@@ -32,11 +32,15 @@ app.get('/', routes.index)
 app.get('/movies', routes.movies)
 
 app.post("/", function( req, res){
+  // clearFile();
   var requestURI = getRequestURI( req.body.zipcode )
-  console.log("requestURI ",requestURI)
+  console.log("SERVER.JS requestURI ",requestURI)
   var movies = null;
-  movies = getMovieList( requestURI, writeToFile )
-  console.log("movies:", movies)
+  // movies = getMovieList( requestURI, writeToFile )
+
+  var movies = fs.readFileSync('./movieList.json')
+
+  console.log("SERVER.JS movies:", movies)
   res.render("results", {movies:movies})
 })
 
@@ -44,6 +48,10 @@ app.post("/", function( req, res){
 
 function writeToFile(data){
   fs.writeFile('movieList.json', JSON.stringify(data))
+}
+
+function clearFile(){
+  fs.writeFile('movieList.json', '')
 }
 
 var getRequestURI = function( zipcode ){
@@ -64,13 +72,15 @@ var getMovieList = function( requestURI, callback ){
   // var movies = fs.readFileSync('movies.json');
   // return movies
 
-  request(requestURI, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log("successful AJAX call")
-      callback(body)
-    }
-    else{
-      console.log("failure")
-    }
-  })
+  // request(requestURI, function (error, response, body) {
+  //   if (!error && response.statusCode == 200) {
+  //     console.log("SERVER.JS successful AJAX call")
+  //     callback(body)
+  //   }
+  //   else{
+  //     console.log("failure")
+  //   }
+  // })
+  //
+  // return body
 }

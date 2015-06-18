@@ -25,19 +25,19 @@ $(document).ready(function(){
 
     requestURI = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+startDate+"&zip="+zip+"&api_key="+key
 
-    $.ajax({
-      url: requestURI,
-      type: "GET",
-      dataType: "json" //jsonp wraps the whole response in a callback function. You're not lpoading data but getting a reference
-    }).done(function(response){
-      // console.log("response", response)
-      movieList = response
-      sendToResults(movieList)
-    }).fail(function(){
-      console.log("AJAX request was not successful")
-    }).always(function(){
-      console.log("This always happens!")
-    })
+    // $.ajax({
+    //   url: requestURI,
+    //   type: "GET",
+    //   dataType: "json" //jsonp wraps the whole response in a callback function. You're not lpoading data but getting a reference
+    // }).done(function(response){
+    //   // console.log("response", response)
+    //   movieList = response
+    //   sendToResults(movieList)
+    // }).fail(function(){
+    //   console.log("AJAX request was not successful")
+    // }).always(function(){
+    //   console.log("This always happens!")
+    // })
 
   })
 

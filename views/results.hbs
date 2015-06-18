@@ -5,7 +5,7 @@
     <input id="submit" type="submit"> -->
     <form method="post" action="/">
       <input type="text" name="zipcode" id="userInput" placeholder="e.g., 20011">
-      <input type="submit">
+      <input id="submit" type="submit">
     </form>
   </div>
 </div>
@@ -15,7 +15,7 @@
 
 <div id ="results">
   <ul>
-    <li ng-repeat="movie in movies">
+    <li ng-repeat="movie in movies track by $index">
       Movie: \{{movie.title}}
     </li>
   </ul>

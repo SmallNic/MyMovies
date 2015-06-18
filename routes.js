@@ -8,18 +8,29 @@ module.exports ={
     // var movieList = req.query.movieList
     // console.log(movieList)
     // res.render("results", {movieList:movieList})
-    var fs = require('fs');
-    // var movieList = fs.readFileSync('./movies.json');
-    // res.json(movieList);
-    people = [{name:"nic", age:32}, {name:"teddy", age:10}, {name:"zoey", age:9}]
+    // var fs = ;
+    // people = [{name:"nic", age:32}, {name:"teddy", age:10}, {name:"zoey", age:9}]
 
-    var movieList;
-    fs.readFile('./movies.json', 'utf8', function (err, data) {
-      if (err) throw err;
-      // movieList = JSON.parse(data);
-    });
+    // var data = fs.readFile('./movies.json')
+    // res.setHeader('Content-Type', 'application/json');
+    // res.send(data);
 
-    res.json(people)
+    readJSONFile(renderJSONFile)
+
+    function readJSONFile(callback){
+      data = require('fs').readFileSync('./movieList.json')
+      data = JSON.stringify(data)
+      callback(data)
+    }
+
+    function renderJSONFile( data ){
+      res.setHeader('Content-Type', 'application/json');
+      res.send(data);
+    }
+
+
+    // var movieList = JSON.parse(data)
+    // res.json(movieList)
 
   },
 
