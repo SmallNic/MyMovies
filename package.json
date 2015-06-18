@@ -1,0 +1,27 @@
+{
+  "name": "mymovies",
+  "version": "1.0.0",
+  "description": "See what movies are playing in your area",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmallNic/MyMovies.git"
+  },
+  "author": "Nic Small",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmallNic/MyMovies/issues"
+  },
+  "homepage": "https://github.com/SmallNic/MyMovies#readme",
+  "dependencies": {
+    "angular": "^1.4.1",
+    "body-parser": "^1.13.1",
+    "express": "^4.12.4",
+    "hbs": "^3.1.0",
+    "mongoose": "^4.0.5",
+    "request": "^2.58.0"
+  }
+}

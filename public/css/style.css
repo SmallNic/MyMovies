@@ -1,0 +1,58 @@
+html, body, header {
+  margin:0;
+  padding:0;
+}
+
+header {
+  height:250px;
+}
+
+#background {
+  text-align: center;
+  background: url("../images/movie_seats.jpg") no-repeat;
+  background-size: cover;
+  background-position:center 75%;
+  width:100%;
+  height:100%;
+  /*border: green solid 2px;*/
+}
+
+
+h1{
+  width:60%;
+  padding:0;
+  margin: 0 auto;
+  font-family: 'Cinzel', serif;
+  font-weight:700;
+  font-size:8em;
+  /*border: yellow solid 2px;*/
+  opacity:1;
+  color:white;
+  text-shadow: 5px 5px 5px #909ECC, 10px 10px 5px #2F0128;
+}
+
+body {
+  background:#909ECC;
+}
+
+#form{
+  border: 2px solid #405493;
+  border-radius:10px;
+  margin: 20px auto;
+  width:30%;
+  font-size:2em;
+  text-align:center;
+  padding: 20px;
+  background: #5F71AB;
+  color:white;
+}
+
+p{
+  margin:0;
+  padding:0;
+}
+
+#form-info {
+  margin: 0 auto;
+  text-align:center;
+}

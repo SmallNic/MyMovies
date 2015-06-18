@@ -1,0 +1,24 @@
+<div id="form">
+  <p>Please enter your zipcode<p>
+  <div id="form-info">
+    <!-- <input id="userInput" type="text" placeholder="e.g., 20011" ng-model="query">
+    <input id="submit" type="submit"> -->
+    <form method="post" action="/">
+      <input type="text" name="zipcode" id="userInput" placeholder="e.g., 20011">
+      <input type="submit">
+    </form>
+  </div>
+</div>
+
+
+
+
+<div id ="results">
+  <ul>
+    <li ng-repeat="person in people">
+      Hello, \{{person.name}}. You are \{{person.age}} years old.
+    </li>
+  </ul>
+  There are \{{people.length}} items.
+
+</div>
