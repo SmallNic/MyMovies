@@ -21,7 +21,7 @@ var routes = require("./routes")
 // Require 'request' for http calls
 var request = require('request');
 
-
+// Require ds to read from file
 var fs = require('fs');
 
 app.listen(process.env.PORT || 3000, function(){
@@ -34,14 +34,17 @@ app.get('/movies', routes.movies)
 app.post("/", function( req, res){
   var requestURI = getRequestURI( req.body.zipcode )
   console.log("requestURI ",requestURI)
-  var movieList = getMovieList( requestURI )
-  // res.setHeader('Content-Type', 'application/json');
-  // res.send(movieList)
-  res.render("results")
-
+  var movies = null;
+  movies = getMovieList( requestURI, writeToFile )
+  console.log("movies:", movies)
+  res.render("results", {movies:movies})
 })
 
 
+
+function writeToFile(data){
+  fs.writeFile('movieList.json', JSON.stringify(data))
+}
 
 var getRequestURI = function( zipcode ){
   var key = "xt6mvwt4htbpv3pjr6hyjtmd"
@@ -57,17 +60,17 @@ var getRequestURI = function( zipcode ){
 }
 
 
-var getMovieList = function( requestURI ){
-  var movies = fs.readFileSync('movies.json');
-  return movies
+var getMovieList = function( requestURI, callback ){
+  // var movies = fs.readFileSync('movies.json');
+  // return movies
 
-  // request("/movies.json", function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     console.log("success ", body)
-  //     return body
-  //   }
-  //   else{
-  //     console.log("failure")
-  //   }
-  // })
+  request(requestURI, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("successful AJAX call")
+      callback(body)
+    }
+    else{
+      console.log("failure")
+    }
+  })
 }

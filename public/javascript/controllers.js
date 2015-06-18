@@ -1,17 +1,30 @@
-var customInterpolationApp = angular.module('moviemeApp', []);
-
- customInterpolationApp.config(function($interpolateProvider) {
-   $interpolateProvider.startSymbol('{[{');
-   $interpolateProvider.endSymbol('}]}');
- });
-
 var moviemeApp = angular.module('moviemeApp', [])
 
 moviemeApp.controller('MovieListCtrl', function ($scope, $http){
-  $http.get('/movies').success(function(data) {
-    $scope.people = data
-    console.log("data: ", data)
-  })
+
+  getMovies();
+
+  function getMovies(){
+    $http.get('/movieList').success(function(data) {
+      $scope.movies = data
+      console.log("data: ", data)
+    })
+  }
+
+  document.getElementById("submit").addEventListener('click', function() {
+    $scope.$apply(function() {
+      console.log("you performed a search");
+      getMovies()
+    });
+  });
+
+  // $scope.movies = function($http){
+  //   return $http.get('/movieList').success(function(data){
+  //     console.log("read from file")
+  //     return data
+  //   })
+  // }()
+  // console.log("data: ", data)
 })
 
 
