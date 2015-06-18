@@ -15,8 +15,9 @@
 
 <div id ="results">
   <ul>
-    <li ng-repeat="movie in movies track by $index">
-      Movie: \{{movie.title}}
+    <li ng-repeat="movie in movies">
+    <!-- <li ng-repeat="movie in movies track by $index"> -->
+      <a href="\{{movie.link.url}}">\{{movie.display_title}}</a>
     </li>
   </ul>
   There are \{{movies.length}} movies on this list.

@@ -32,55 +32,64 @@ app.get('/', routes.index)
 app.get('/movies', routes.movies)
 
 app.post("/", function( req, res){
-  // clearFile();
-  var requestURI = getRequestURI( req.body.zipcode )
+  var requestURI = getRequestURI( req.body.keyword )
   console.log("SERVER.JS requestURI ",requestURI)
-  var movies = null;
-  // movies = getMovieList( requestURI, writeToFile )
+  // var movies = null;
+  movies = getResults( requestURI, writeToFile )
 
-  var movies = fs.readFileSync('./movieList.json')
+  // var movies = fs.readFileSync('./movieList.json')
 
-  console.log("SERVER.JS movies:", movies)
-  res.render("results", {movies:movies})
+  // console.log("SERVER.JS movies:", movies)
+  // res.render("results", {movies:movies})
+  res.render("results")
 })
 
 
 
 function writeToFile(data){
-  fs.writeFile('movieList.json', JSON.stringify(data))
+  fs.writeFile('movies.json', JSON.stringify(data))
 }
 
 function clearFile(){
   fs.writeFile('movieList.json', '')
 }
 
-var getRequestURI = function( zipcode ){
-  var key = "xt6mvwt4htbpv3pjr6hyjtmd"
-  var dateObj = new Date()
-  var date = dateObj.getDate()
-  date =  (date < 10) ? "0"+date : date
-  var month = dateObj.getMonth() + 1
-  month =  (month < 10) ? "0"+month : month
-  var year = dateObj.getFullYear()
-  var startDate = year+"-"+month+"-"+date
-  requestURI = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+startDate+"&zip="+zipcode+"&api_key="+key
+
+// var getRequestURI = function( zipcode ){
+//   var key = "xt6mvwt4htbpv3pjr6hyjtmd"
+//   var dateObj = new Date()
+//   var date = dateObj.getDate()
+//   date =  (date < 10) ? "0"+date : date
+//   var month = dateObj.getMonth() + 1
+//   month =  (month < 10) ? "0"+month : month
+//   var year = dateObj.getFullYear()
+//   var startDate = year+"-"+month+"-"+date
+//   requestURI = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+startDate+"&zip="+zipcode+"&api_key="+key
+//   return requestURI
+// }
+
+var getRequestURI = function( keyword ){
+  var key = "b1af5705e87f86eccb53e5ed9d84213a:5:72220939"
+  var requestURI = "http://api.nytimes.com/svc/movies/v2/reviews/search.json?query="+keyword+"&api-key="+key
+  console.log("requestURI", requestURI)
   return requestURI
 }
 
-
-var getMovieList = function( requestURI, callback ){
+var getResults = function( requestURI, callback ){
   // var movies = fs.readFileSync('movies.json');
   // return movies
+  var results;
 
-  // request(requestURI, function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     console.log("SERVER.JS successful AJAX call")
-  //     callback(body)
-  //   }
-  //   else{
-  //     console.log("failure")
-  //   }
-  // })
-  //
-  // return body
+  request(requestURI, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log("SERVER.JS successful AJAX call", body)
+      results = body
+      callback(body)
+    }
+    else{
+      console.log("failure")
+    }
+  })
+
+  return results
 }
