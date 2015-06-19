@@ -24,6 +24,12 @@ var request = require('request');
 // Require ds to read from file
 var fs = require('fs');
 
+// Connect to database
+var db = require("./config/db")
+
+//Set up Favorite model
+var Favorite = require("./models/favorite")(db)
+
 app.listen(process.env.PORT || 3000, function(){
   console.log("My Movies server listening at http://localhost:3000/")
 })
@@ -31,20 +37,36 @@ app.listen(process.env.PORT || 3000, function(){
 app.get('/', routes.index)
 app.get('/movies', routes.movies)
 
+app.get('/favorites_json', function(req, res){
+  Favorite.find({}, function (err, favorites) {
+    if (err) console.log(err);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(favorites);
+  })
+})
+
 app.post("/", function( req, res){
   var requestURI = getRequestURI( req.body.keyword )
   console.log("SERVER.JS requestURI ",requestURI)
-  // var movies = null;
   movies = getResults( requestURI, writeToFile )
-
-  // var movies = fs.readFileSync('./movieList.json')
-
-  // console.log("SERVER.JS movies:", movies)
-  // res.render("results", {movies:movies})
-  res.render("results")
+  res.render("results",{keyword:req.body.keyword})
 })
 
+app.post("/favorites", function( req, res){
+  console.log("SERVER.JS new_fave ", req.body)
 
+  Favorite.create({
+    display_title:req.body.display_title,
+    byline:req.body.byline,
+    url:req.body.link.url,
+    publication_date:req.body.publication_date
+    }, function (err, results) {
+    if (err) return handleError(err);
+  })
+
+  res.render("results")
+
+})
 
 function writeToFile(data){
   fs.writeFile('movies.json', JSON.stringify(data))
@@ -53,7 +75,6 @@ function writeToFile(data){
 function clearFile(){
   fs.writeFile('movieList.json', '')
 }
-
 
 // var getRequestURI = function( zipcode ){
 //   var key = "xt6mvwt4htbpv3pjr6hyjtmd"
@@ -76,13 +97,11 @@ var getRequestURI = function( keyword ){
 }
 
 var getResults = function( requestURI, callback ){
-  // var movies = fs.readFileSync('movies.json');
-  // return movies
   var results;
 
   request(requestURI, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-      console.log("SERVER.JS successful AJAX call", body)
+      console.log("SERVER.JS successful AJAX call")
       results = body
       callback(body)
     }

@@ -47,12 +47,86 @@ body {
   color:white;
 }
 
+h2{
+  margin:0;
+  padding:0;
+  font-size:.9em;
+  text-shadow: 1px 1px 1px black;
+}
+
 p{
   margin:0;
   padding:0;
+  font-size:.75em;
+  text-shadow: 1px 1px 1px black;
+
 }
 
 #form-info {
   margin: 0 auto;
   text-align:center;
+}
+
+ul
+{
+list-style-type: none;
+margin:0;
+padding:0;
+}
+
+a {
+  text-decoration: none;
+  color:inherit;
+}
+/*.result-attr{
+  float:left;
+  border: 1px solid black;
+}*/
+/*.results::after{
+  clear:both;
+}*/
+
+#results{
+  padding:1% 0;
+  background: #5F71AB;
+  border: 2px solid #405493;
+  font-family:Georgia;
+  font-size:1.2em;
+  /*border: 1px solid black;*/
+  width:80%;
+  margin:0 auto;
+  border-radius:5px;
+}
+
+.heading{
+  font-weight:bold;
+  color:white;
+}
+
+.entry{
+  margin:10px 0;
+}
+
+.entry a:link{
+
+}
+
+.byline{
+  padding: 0 7.5%;
+}
+
+li:nth-child(odd) {
+    background: #909ECC;
+    padding:5px 0;
+}
+
+li:nth-child(even) {
+    color:white;
+    padding:5px 0;
+}
+
+
+.sorter{
+  margin: 10px 0 0 0;
+
 }

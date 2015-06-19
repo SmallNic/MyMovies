@@ -1,23 +1,56 @@
 <div id="form">
-  <p>Please enter your zipcode<p>
+  <h2>You searched for <span style="color:red;">{{keyword}}</span></h2>
+  <div class="row sorter">
+    <p>Sort by</p>
+  </div>
+  <div class="row">
+    <select ng-model="orderProp">
+      <option value="publication_date">Date</option>
+      <option value="display_title">Movie Title</option>
+      <option value="byline">Writer</option>
+    </select>
+  </div>
+  <h2>Please enter a new movie title</h2>
   <div id="form-info">
     <!-- <input id="userInput" type="text" placeholder="e.g., 20011" ng-model="query">
     <input id="submit" type="submit"> -->
     <form method="post" action="/">
-      <input type="text" name="zipcode" id="userInput" placeholder="e.g., 20011">
+      <input type="text" name="keyword" id="userInput" placeholder="e.g., The Matrix" ng-model="query">
       <input id="submit" type="submit">
     </form>
   </div>
+  <button ng-click="showFavorites()">My Favorite Reviews</button>
+
 </div>
 
 
-
-
-<div id ="results">
-  <ul>
-    <li ng-repeat="movie in movies">
+<div id="results">
+  <div class="row heading">
+    <div class="display_title column column-4">
+      Title
+    </div>
+    <div class="byline column column-4">
+      Writer
+    </div>
+    <div class="date column column-4">
+      Publication Date
+    </div>
+  </div>
+  <ul class="entries">
+    <li ng-repeat="movie in movies | orderBy:orderProp" class="row entry">
     <!-- <li ng-repeat="movie in movies track by $index"> -->
+    <div class="display_title result-attr column column-4">
       <a href="\{{movie.link.url}}">\{{movie.display_title}}</a>
+    </div>
+    <div class="byline result-attr column column-4">
+      \{{movie.byline}}
+    </div>
+    <div class="date result-attr column column-4">
+      \{{movie.publication_date}}
+    </div>
+    <div>
+      <button ng-click="add(movie)" class="fave">Favorite Me</button>
+    </div>
     </li>
   </ul>
   There are \{{movies.length}} movies on this list.
