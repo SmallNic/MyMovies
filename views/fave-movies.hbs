@@ -1,0 +1,11 @@
+<div class="row">
+  <h2>Your Favorite Movies (\{{favoriteMovies.length}})</h2>
+</div>
+
+  <ul class="favoriteMovies">
+    <li ng-repeat="faveMovie in favoriteMovies track by $index | orderBy:faveMovieOrder">
+      <img ng-src="\{{faveMovie.myJsonProperty.Poster}}">
+    </li>
+  </ul>
+
+</div>

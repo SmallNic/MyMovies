@@ -1,0 +1,33 @@
+<script>
+  var details = '{{{details}}}'
+</script>
+
+<div class="row" id="details" ng-controller="DetailsCtrl">
+  <div class="row movie-title">
+    <h2>Movie Details for {{title}}</h2>
+  </div>
+
+  <div class="row">
+
+    <div class="column column-4 poster">
+      <div>
+        <button ng-click="addPoster(details)">Add to Favorites</button>
+      </div>
+      <img ng-src="\{{details.Poster}}">
+    </div>
+
+    <div class="column column-8 details">
+      <ul>
+        <li>Full Title: \{{details.Title}}</li>
+        <li>Released: \{{details.Released}}</li>
+        <li>Runtime: \{{details.Runtime}}</li>
+        <li>Genre: \{{details.Genre}}</li>
+        <li>Director: \{{details.Director}}</li>
+        <li>Writer: \{{details.Writer}}</li>
+        <li>Actors: \{{details.Actors}}</li>
+        <li>Plot: \{{details.Plot}}</li>
+        <li>Language: \{{details.Language}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<script>
+  // console.log("showtimes1", JSON.parse('{{showtimes}}'))
+  // console.log("showtimes2", JSON.parse('{{{showtimes}}}'))
+  // console.log("SHOWTIMES.HBS - showtimes3:", JSON.stringify('{{showtimes}}'))
+  // console.log("showtimes4", {{{showtimes}}})
+  var showtimes = '{{{showtimes}}}'
+  // console.log("SHOWTIMES.HBS - showtimes5", showtimes)
+</script>
+
+<div id="showtimes" ng-controller="ShowtimesCtrl">
+  <h2>Movies Currently in Theaters near {{zipcode}}</h2>
+
+  <ul>
+    <li ng-repeat="movie in showtimes track by $index ">
+      Title: \{{movie.title}}
+    </li>
+  </ul>
+
+  <p>Total number of results: \{{showtimes.length}} </p>
+
+
+</div>
