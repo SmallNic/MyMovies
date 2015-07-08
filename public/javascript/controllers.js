@@ -10,53 +10,23 @@ moviemeApp.controller('DetailsCtrl', function ($scope, $http){
   })
 })
 
-
-moviemeApp.controller('ShowtimesCtrl', function ($scope, $http){
-  // $http.get('/showtimes/data').success(function(data){
-  //     $scope.showtimes = data
-  // })
-  // $scope.showtimes = JSON.parse(showtimes)
-  $scope.showtimes = showtimes
-
-  console.log("CONTROLLER - showtimes1:", $scope.showtimes)
-  $scope.$watch("showtimes", function(){
-    console.log("CONTROLLER - showtimes2:", $scope.showtimes);
-  })
-})
-
 moviemeApp.controller('MovieListCtrl', function ($scope, $http){
 
-
   $scope.orderProp = 'display_title';
-  // $scope.movies = null;
-
-  // $http.get('movies')
-    //  .then(function(res){
-    //     $scope.movies = JSON.parse(res.data);
-    //   });
-
-
-
-  getMovies();
-
-  function getMovies(){
-    $http.get('/movies').success(function(data) {
-      data = JSON.parse(data)
-        $scope.movies = data["results"]
-    })
-  }
-
-  // document.getElementById("submit").addEventListener('click', function() {
-  //   setTimeout(function(){
-  //     $scope.$apply(function(){
-  //       getMovies()
-  //     })
-  //   }, 5000)
-  // });
+  $scope.posterOrder = 'myJsonProperty.Title'
 
   $scope.add = function( movie ){
     console.log("New favorite review added:", movie)
     $http.post('/favorites', movie).success(function(data) {
+    })
+  }
+
+  $scope.remove = function( movie ){
+    console.log("Movie removed:", movie)
+    $http.post('/remove', movie).success(function(data) {
+      $http.get('/favorite-movies-json').success(function(data){
+        $scope.favoriteMovies = data
+      })
     })
   }
 
@@ -69,18 +39,6 @@ moviemeApp.controller('MovieListCtrl', function ($scope, $http){
 
   $http.get('/favorite-movies-json').success(function(data){
     $scope.favoriteMovies = data
-  })
-
-  $scope.faveMovieOrder = 'myJsonProperty.Title';
-
-
-
-  $scope.showFavorites = function(){
-    $scope.movies = $scope.favorites
-  }
-
-  $http.get('/favorites_json').success(function(data) {
-      $scope.favorites = data
   })
 
 })

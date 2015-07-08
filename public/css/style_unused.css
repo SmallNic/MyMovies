@@ -1,6 +1,6 @@
 /************************************ Page-Wide ************************************/
 
-html, body, header, h1, h2, p {
+html, body, header, h1, h2 {
   margin:0;
   padding:0;
 }
@@ -9,21 +9,10 @@ body {
   background:#909ECC;
 }
 
-ul {
-  list-style-type: none;
-  margin:0;
-  padding:0;
-}
-
-a {
-  text-decoration: none;
-  color:inherit;
-}
 /************************************ Header ************************************/
 
 header {
   position:relative;
-  margin-bottom:10px;
 }
 
 #background{
@@ -81,15 +70,14 @@ header {
 }
 
 
-/************************************ Home Page ************************************/
+/************************************ Body ************************************/
 
-main .movie-search{
-  width:30%;
-}
-.movie-search{
+
+.form{
   border: 2px solid #405493;
   border-radius:10px;
   margin: 20px auto;
+  width:30%;
   font-size:2em;
   text-align:center;
   padding: 20px;
@@ -97,7 +85,7 @@ main .movie-search{
   color:white;
 }
 
-.movie-search h2{
+.form h2{
   font-family: 'Open Sans', sans-serif;
   margin:0;
   padding:0;
@@ -105,23 +93,75 @@ main .movie-search{
   text-shadow: 1px 1px 1px black;
 }
 
+p{
+  margin:0;
+  padding:0;
+}
+
 .form-info {
   margin: 0 auto;
   text-align:center;
 }
 
-/************************************ Details Page ************************************/
-
-.movie-details {
-    margin:50px 0;
+ul {
+  list-style-type: none;
+  margin:0;
+  padding:0;
 }
 
-.movie-details *{
+a {
+  text-decoration: none;
+  color:inherit;
+}
+
+#results{
+  padding:1% 0;
+  background: #5F71AB;
+  border: 2px solid #405493;
+  font-family:Georgia;
+  font-size:1.2em;
   /*border: 1px solid black;*/
+  width:80%;
+  margin:0 auto;
+  border-radius:5px;
 }
 
-.movie-details .movie-search{
-  width: 60%;
+.heading{
+  font-weight:bold;
+  color:white;
+}
+
+.entry{
+  margin:10px 0;
+}
+
+.entry a:link{
+
+}
+
+.byline{
+  padding: 0 7.5%;
+}
+
+.entries>li:nth-child(odd) {
+    background: #909ECC;
+    padding:5px 0;
+}
+
+.entries>li:nth-child(even) {
+    color:white;
+    padding:5px 0;
+}
+
+
+.sorter{
+  margin: 10px 0 0 0;
+}
+
+.movie-title{
+  text-align:center;
+  font-size:2em;
+  margin-bottom:2%;
 }
 
 .poster{
@@ -132,8 +172,8 @@ main .movie-search{
   margin-bottom:5px;
 }
 
-.details li{
-  margin: 5px;
+.details>ul>li{
+  margin: 10px;
   font-size: 1.2em;
   background-color: #FF9900;
   color: #405393;
@@ -142,26 +182,22 @@ main .movie-search{
   padding:10px;
 }
 
-/************************************ Favorites Page ************************************/
 
-.favoriteMovies *{
-  /*border:1px red solid;*/
-}
-
-.favorites h2{
-  color: maroon;
-  font-family: 'Open Sans', sans-serif;
-  font-size:2em;
-  text-align:center;
-}
 
 
 .favoriteMovies li{
-  display: inline-block;
+  float:left;
   margin: 0 10px
+
 }
 
-.remove-button{
+.movie-poster{
+  float:left;
+}
+
+.page-title>h2{
+  font-size:2em;
+  text-shadow: none;
   text-align:center;
   margin: 10px 0;
 }
@@ -171,4 +207,16 @@ main .movie-search{
   margin: 10px 0;
 }
 
-/************************************ Misc ************************************/
+.remove-button{
+  text-align:center;
+  margin: 10px 0;
+}
+
+.movie-details {
+    margin-bottom:80px;
+}
+
+.movie-search{
+  text-align:center;
+  margin:0 auto;
+}

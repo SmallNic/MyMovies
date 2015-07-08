@@ -1,10 +1,23 @@
-<div class="row">
-  <h2>Your Favorite Movies (\{{favoriteMovies.length}})</h2>
+<div class="row favorites">
+  <h2>Your \{{favoriteMovies.length}} Favorite Movies</h2>
+</div>
+<div class="row dropdown">
+  Sort by:
+  <select ng-model="posterOrder">
+    <option value="myJsonProperty.Title">Movie Title</option>
+    <option value="myJsonProperty.Year">Year</option>
+    <option value="myJsonProperty.imdbRating">IMDB Rating</option>
+  </select>
 </div>
 
-  <ul class="favoriteMovies">
-    <li ng-repeat="faveMovie in favoriteMovies track by $index | orderBy:faveMovieOrder">
-      <img ng-src="\{{faveMovie.myJsonProperty.Poster}}">
+  <ul class="favoriteMovies row">
+    <li ng-repeat="faveMovie in favoriteMovies | orderBy:posterOrder" class="movie-poster">
+      <div class="row remove-button">
+        <button ng-click="remove(faveMovie)">Remove</button>
+      </div>
+      <div class="row">
+        <img ng-src="\{{faveMovie.myJsonProperty.Poster}}">
+      </div>
     </li>
   </ul>
 

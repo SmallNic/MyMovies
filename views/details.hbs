@@ -1,13 +1,8 @@
 <script>
-  var details = '{{{details}}}'
+var details = '{{{details}}}'
 </script>
 
-<div class="row" id="details" ng-controller="DetailsCtrl">
-  <div class="row movie-title">
-    <h2>Movie Details for {{title}}</h2>
-  </div>
-
-  <div class="row">
+<div class="row movie-details" ng-controller="DetailsCtrl">
 
     <div class="column column-4 poster">
       <div>
@@ -16,7 +11,7 @@
       <img ng-src="\{{details.Poster}}">
     </div>
 
-    <div class="column column-8 details">
+    <div class="column column-4 details">
       <ul>
         <li>Full Title: \{{details.Title}}</li>
         <li>Released: \{{details.Released}}</li>
@@ -29,5 +24,18 @@
         <li>Language: \{{details.Language}}</li>
       </ul>
     </div>
-  </div>
+
+    <div class="column column-4">
+      <div class="movie-search">
+        <h2>Search For Movie</h2>
+        <div class="form-info">
+          <form method="post" action="/details">
+            <input type="text" name="title" id="userInput" placeholder="E.g., The Matrix" ng-model="titleQuery">
+            <input id="submit" type="submit">
+          </form>
+        </div>
+      </div>
+    </div>
+
+
 </div>
