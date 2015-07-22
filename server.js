@@ -31,7 +31,6 @@ var db = require("./config/db")
 var Favorite = require("./models/favorite")(db)
 var FavoriteMovie = require("./models/favoriteMovie")(db)
 
-
 var showtimes;
 var details;
 

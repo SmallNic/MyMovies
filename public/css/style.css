@@ -161,14 +161,24 @@ main .movie-search{
   margin: 0 10px
 }
 
-.remove-button{
-  text-align:center;
-  margin: 10px 0;
-}
 
 .dropdown {
   text-align:center;
   margin: 10px 0;
+}
+
+.delete {
+  float: right;
+  font-weight: bold;
+  background: none;
+  font-size: 1em;
+  border: none;
+  position: relative;
+  top:28px;
+  border-radius: 5px;
+  border:solid red 3px;
+  color:red;
+  cursor: pointer;
 }
 
 /************************************ Misc ************************************/

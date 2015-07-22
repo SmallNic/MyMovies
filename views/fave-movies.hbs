@@ -12,10 +12,8 @@
 
   <ul class="favoriteMovies row">
     <li ng-repeat="faveMovie in favoriteMovies | orderBy:posterOrder" class="movie-poster">
-      <div class="row remove-button">
-        <button ng-click="remove(faveMovie)">Remove</button>
-      </div>
       <div class="row">
+        <button class="delete" ng-click="remove(faveMovie)">&times;</button>
         <img ng-src="\{{faveMovie.myJsonProperty.Poster}}">
       </div>
     </li>
