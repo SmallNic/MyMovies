@@ -28,10 +28,8 @@ var fs = require('fs');
 var db = require("./config/db")
 
 //Set up Favorite model
-var Favorite = require("./models/favorite")(db)
 var FavoriteMovie = require("./models/favoriteMovie")(db)
 
-var showtimes;
 var details;
 
 app.listen(process.env.PORT || 3000, function(){
@@ -40,20 +38,11 @@ app.listen(process.env.PORT || 3000, function(){
 
 app.get('/', routes.index)
 app.get('/favorite-movies', routes.favoriteMovies)
-
 app.get('/favorite-movies-json', function( req, res ){
   FavoriteMovie.find({}, function (err, favoriteMovies) {
     if (err) console.log(err);
     res.setHeader('Content-Type', 'application/json');
     res.send(favoriteMovies);
-  })
-})
-
-app.get('/favorites_json', function(req, res){
-  Favorite.find({}, function (err, favorites) {
-    if (err) console.log(err);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(favorites);
   })
 })
 
@@ -72,7 +61,6 @@ app.post("/details", function( req, res){
     }
   })
 })
-
 
 app.post("/favorite-movies", function( req, res){
   console.log("SERVER.JS newFavoriteMovie ", req.body)

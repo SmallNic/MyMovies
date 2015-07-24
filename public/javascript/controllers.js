@@ -1,6 +1,37 @@
 // var fs = require('fs');
 var moviemeApp = angular.module('moviemeApp', [])
 
+moviemeApp.config([
+
+  '$stateProvider',
+  '$urlRouterProvider',
+  function ($stateProvider, $urlRouterProvider{
+
+    $stateProvider
+      .state('index', {
+        url: '/',
+        templateUrl: '/index.html',
+        controller: 'MovieListCtrl'
+      })
+
+      .state('details', {
+        url: '/details',
+        templateUrl: '/details.html',
+        controller: 'DetailsCtrl'
+      })
+
+      .state('fave-movies', {
+        url: '/fave-movies',
+        templateUrl: '/fave-movies.html',
+        controller: 'MovieListCtrl'
+      })
+
+  })
+
+])
+
+
+
 moviemeApp.controller('DetailsCtrl', function ($scope, $http){
   $scope.details = JSON.parse(details)
 
