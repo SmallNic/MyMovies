@@ -38,6 +38,7 @@ app.listen(process.env.PORT || 3000, function(){
 
 app.get('/', routes.index)
 app.get('/favorite-movies', routes.favoriteMovies)
+
 app.get('/favorite-movies-json', function( req, res ){
   FavoriteMovie.find({}, function (err, favoriteMovies) {
     if (err) console.log(err);

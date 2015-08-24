@@ -5,7 +5,7 @@ moviemeApp.config([
 
   '$stateProvider',
   '$urlRouterProvider',
-  function ($stateProvider, $urlRouterProvider{
+  function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
       .state('index', {
@@ -26,7 +26,7 @@ moviemeApp.config([
         controller: 'MovieListCtrl'
       })
 
-  })
+  }
 
 ])
 
